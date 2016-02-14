@@ -26,12 +26,12 @@ sample input:
 
 
 sample output:
-Symbol Table
-xy=2
+> Symbol Table
+> xy=2
 z=15
 
 Memory Map
-0:  1004
+> 0:  1004
 1:  5678
 2:  2015
 3:  8002
