@@ -1,9 +1,9 @@
 /**
- * @author Ye Hua Lab1 2-pass linker simualtor Due 02/09/2015 
+ * @author Ye Hua Lab1 2-pass linker simualtor
  */
+import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.io.*;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +45,8 @@ public class linker{
     			int relativeAddress = input.nextInt();
     			//error handling goes here...
     			if(symbolDef.get(symbol) != null){
-    				errorMessage.add("Error symbol " + symbol + " is multiply defined, and the first definition is used");
+    				errorMessage.add("Error symbol " + symbol
+    				+ " is multiply defined, and the first definition is used");
     			}
     			else {
     			symbolDef.put(symbol, moduleNumber);
@@ -81,7 +82,8 @@ public class linker{
 			int absoluteAddress = (int) symbolTable.get(key);
 			int moduleSize = (int) moduleLen.get(value);
 			if (absoluteAddress - baseAddress >= moduleSize){
-				errorMessage.add("Error symbol " + key + " is defined at an address that exceeds the size of the module, and treat the relative address given as 0");
+				errorMessage.add("Error symbol " + key
+				+ " is defined at an address that exceeds the size of the module, and treat the relative address given as 0");
 				symbolTable.put(key, baseAddress);
 			}
 		}
@@ -132,8 +134,10 @@ public class linker{
 
     	while(input.hasNext()){
     		HashMap<String, Integer> used_symbol_in_module = new HashMap<String, Integer>();
-    		HashMap<Integer, Integer> ins_location = new HashMap<Integer, Integer>(); //helps to access the instruction starts at any relative loc in the module
-    		HashMap<Integer, String> type_location = new HashMap<Integer, String>(); //look up which type occurs at a particular location
+    		//helps to access the instruction starts at any relative loc in the module
+    		HashMap<Integer, Integer> ins_location = new HashMap<Integer, Integer>();
+    		    		//look up which type occurs at a particular location
+    		HashMap<Integer, String> type_location = new HashMap<Integer, String>();
     		int relocationConstant = (int) moduleBase.get(moduleNumber);
     		//skip definition list
     		int number_of_defs = input.nextInt();
@@ -172,7 +176,8 @@ public class linker{
 				int moduleSize = (int) moduleLen.get(moduleNumber);
 				int address_in_use = (int) symbolInUse.get(key);
 				if (address_in_use > moduleSize){
-					errorMessage.add("Error: symbol " + key + " in use list has an address that exceeds the size of the module, the address has been treated as 777");
+					errorMessage.add("Error: symbol " + key
+					+ " in use list has an address that exceeds the size of the module, the address has been treated as 777");
 					ins_location.put(address_in_use, 1777);
 					type_location.put(address_in_use,"E");
 					counter = address_in_use + 1;
@@ -200,7 +205,9 @@ public class linker{
     					} 
     					if (type_location.get(i).equals("E")){
     						corrected_address_list[i] = (int)ins_location.get(i);
-    						errorMessage.add("Error: at instruction" + i + "within module " + (moduleNumber-1) +" E type address not on use chain; treated as I type.");
+    						errorMessage.add("Error: at instruction" + i
+    						+ "within module " + (moduleNumber-1)
+    						+" E type address not on use chain; treated as I type.");
     					}
     				}
     			}
@@ -216,7 +223,9 @@ public class linker{
     			while (start_loc != 777){
                                     //error handle if symbol is used buy not defined.               
                     if(symbolDef.get(symbol_in_use) == null){
-                        errorMessage.add("Error symbol " + symbol + " is not defined, and its value is given zero at instruction " + (start_loc+1) + " within module " + moduleNumber);
+                        errorMessage.add("Error symbol " + symbol
+                        + " is not defined, and its value is given zero at instruction "
+                        + (start_loc+1) + " within module " + moduleNumber);
                         //start_loc = 0;
                         symbolTable.put(symbol, 0);
                     }
@@ -229,14 +238,16 @@ public class linker{
     					start_loc = temp_address%1000;
     					//check if the next address directs you to an address that exceeds module size. 
     					if (start_loc != 777 && ((int)ins_location.get(start_loc))%1000 != 777 && ins_location.get(((int)ins_location.get(start_loc))%1000) == null){
-    						errorMessage.add("Error: symbol " + symbol_in_use + " in use list has an address that exceeds the size of the module, the address has been treated as 777");
+    						errorMessage.add("Error: symbol " + symbol_in_use
+    						+ " in use list has an address that exceeds the size of the module, the address has been treated as 777");
     						corrected_address_list[start_loc] = ((int)ins_location.get(start_loc)/1000)*1000+(int)symbolTable.get(symbol_in_use);
     						break;
     					}
     				}
     				else {
     					String misplaced_symbol = (String)type_location.get(start_loc);
-    					errorMessage.add("Error: " + misplaced_symbol + " type address on use chain; treated as E type.");
+    					errorMessage.add("Error: " + misplaced_symbol
+    					+ " type address on use chain; treated as E type.");
     					firstDigit = temp_address/1000;
     					Integer absoluteAddress = (Integer)symbolTable.get(symbol_in_use);
     					corrected_address_list[start_loc] = firstDigit*1000+absoluteAddress;
@@ -255,7 +266,8 @@ public class linker{
     					} 
     					if (type_location.get(i).equals("E")){
     						corrected_address_list[i] = (int)ins_location.get(i);
-    						errorMessage.add("Error: at instruction " + i + " within module " + (moduleNumber-1) + ", E type address not on use chain; treated as I type.");
+    						errorMessage.add("Error: at instruction " + i
+    						+ " within module " + (moduleNumber-1) + ", E type address not on use chain; treated as I type.");
     					}
 
     				}
@@ -276,7 +288,8 @@ public class linker{
 			String key = (String) iterator_1.next();
 			Integer value = (Integer) symbolDef.get(key);
 			if (!symbolInUse.containsKey(key)) {				
-				System.out.println("Warning: " + key + " was defined in module " + (value-1) +" but never used.");
+				System.out.println("Warning: " + key
+				+ " was defined in module " + (value-1) +" but never used.");
 			}
 		}
 	}   
