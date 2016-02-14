@@ -2,7 +2,6 @@
 
 #####Compile the program:
 ---------------------
-Option 1: 
 
 	$ java linker input.txt 
 	
