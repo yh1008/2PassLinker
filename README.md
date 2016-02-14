@@ -1,3 +1,3 @@
-#### operating-systems
-####javac linker.java
-####java linker input.txt
+###### this is an implementation of 2-pass linker
+######javac linker.java
+######java linker input.txt
