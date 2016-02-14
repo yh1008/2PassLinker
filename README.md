@@ -11,8 +11,8 @@
 	$ java linker input.txt
 
 sample input:
-1   xy 2
-1   z 4
+> 1   xy 2
+> 1   z 4
 5   R 1004  I 5678  E 2777  R 8002  E 7002
 0
 1   z 3
@@ -23,6 +23,7 @@ sample input:
 1   z 2
 1   xy 2
 3   A 8000  E 1777  E 2001
+
 
 sample output:
 Symbol Table
