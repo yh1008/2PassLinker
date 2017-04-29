@@ -13,8 +13,7 @@
 	$ java linker input.txt
 
 **Sample input**:
-> 
-1   xy 2  
+> 1   xy 2  
 1   z 4  
 5   R 1004  I 5678  E 2777  R 8002  E 7002  
 0  
