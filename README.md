@@ -1,5 +1,5 @@
-###### this is an implementation of 2-pass linker, which demonstrates the knolwedge of memory recolation
-![alt text](https://en.wikipedia.org/wiki/Linker_(computing)#/media/File:Linker.svg "linker")
+##### this is an implementation of 2-pass linker, which demonstrates the knolwedge of memory recolation
+
 
 ##### Compile the program:
 ---------------------
