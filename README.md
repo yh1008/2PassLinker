@@ -1,12 +1,12 @@
 ###### this is an implementation of 2-pass linker, which demonstrates the knolwedge of memory recolation
 ![alt text](https://en.wikipedia.org/wiki/Linker_(computing)#/media/File:Linker.svg "linker")
 
-#####Compile the program:
+##### Compile the program:
 ---------------------
 
 	$ java linker input.txt 
 	
-#####Run the program:
+##### Run the program:
 ---------------------
 
 	$ java linker input.txt
