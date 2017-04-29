@@ -1,6 +1,6 @@
 ##### this is an implementation of 2-pass linker, which demonstrates the knolwedge of memory recolation
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/yh1008/2PassLinker/blob/master/Linker.svg.png)
 
 ##### Compile the program:
 ---------------------
